@@ -125,7 +125,7 @@ function Categories() {
                     </Select>
                 </Form.Item>
                 <Form.Item label="Color">
-                    <ColorPicker value={form.color} onChange={(value) => setForm({ ...form, color: value.toHex() })} />
+                    <ColorPicker value={form.color} onChange={(value) => setForm({ ...form, color: value.toHexString() })} />
                 </Form.Item>
                 </Form>
             </Modal>
