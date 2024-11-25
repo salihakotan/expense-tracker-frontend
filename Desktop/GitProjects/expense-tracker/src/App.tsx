@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import Login from "./components/Login";
 
 const { Header, Content, Footer } = Layout;
 
@@ -50,6 +51,7 @@ function App() {
           >
             <Routes>
               <Route path="/register" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </Content>

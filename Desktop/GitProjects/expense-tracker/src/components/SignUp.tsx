@@ -2,6 +2,7 @@ import { Button, Form, Input, InputNumber, Checkbox,message, Space } from 'antd'
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
+import { showError, showSuccess } from '../utils/showMessage';
 
 
 
@@ -22,13 +23,6 @@ const validateMessages = {
 };
 
 
-const showError = (errorMessage:string) => {
- message.error(errorMessage);
-};
-
-const showSuccess = (successMessage:String) => {
-  message.success(successMessage);
-};
 
 
 function SignUp() {
@@ -40,7 +34,7 @@ function SignUp() {
     try {
       await api.post("/users/register", values);
       showSuccess("Registered successfully")
-      navigate("/login");
+      navigate("/login", {state:{newSignUp:true}});
     } catch (error) {
       console.log(error);
       showError((error as any).response.data.error);
@@ -75,17 +69,10 @@ function SignUp() {
       <Form.Item
         label="Password"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!', min: 6 }]}
+        rules={[{ required: true, message: 'Please input your password!', min: 3 }]}
       >
         <Input.Password />
       </Form.Item>
-
-
-
-      <Form.Item name="remember" valuePropName="checked" label={null}>
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
 
       <Form.Item label={null}>
         <Button type="primary" htmlType="submit">
