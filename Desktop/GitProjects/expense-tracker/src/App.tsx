@@ -2,6 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/Home";
+import Main from "./components/Main";
+import Categories from "./components/Categories";
 
 const { Header, Content, Footer } = Layout;
 
@@ -15,6 +19,9 @@ function App() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const isAuthenticated = !!localStorage.getItem("token"); // Check token existence
+
 
   return (
     <>
@@ -50,8 +57,17 @@ function App() {
             }}
           >
             <Routes>
+          
               <Route path="/register" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/home" element={<PrivateRoute isAuthenticated={isAuthenticated} component={Home} path="/" />} />
+              <Route path="/categories" element={<PrivateRoute isAuthenticated={isAuthenticated} component={Categories} path="/" />}/>
+
+             <Route path="/" element={<Main />} />
+             
+
+
+             
             </Routes>
           </div>
         </Content>

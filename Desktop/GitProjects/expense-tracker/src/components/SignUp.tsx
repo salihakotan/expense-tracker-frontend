@@ -3,6 +3,7 @@ import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
 import { showError, showSuccess } from '../utils/showMessage';
+import { useEffect, useState } from 'react';
 
 
 
@@ -29,6 +30,9 @@ function SignUp() {
 
   const navigate = useNavigate();
 
+  const [isLoginSuccess, setLoginSuccess] = useState(false);
+
+    const token =localStorage.getItem("token");
 
   const onFinish = async (values: any) => {
     try {
@@ -42,6 +46,14 @@ function SignUp() {
   };
 
   
+  useEffect(() => {
+        
+    if (token && !isLoginSuccess) {
+        setLoginSuccess(true);
+      navigate("/"); // Ensure no infinite redirects
+    }
+}, [token, navigate]);
+
   return (
     <Form
       {...layout}

@@ -1,3 +1,7 @@
+import { UnknownAction } from "redux"
+import { ThunkDispatch } from "redux-thunk"
+import { AppState } from "../store"
+
 export interface User{
     username: string
     full_name: string
@@ -6,9 +10,14 @@ export interface User{
     token: string
 }
 
+export interface LoginForm {
+    username:string;
+    password:string;
+}
+
 export interface UserState {
-    data:User,
-    loading:boolean,
+    data:User;
+    loading:boolean;
     error:string
 }
 
@@ -25,3 +34,7 @@ export interface UserState {
 }
 
 export type UserAction =  LOGIN_START | LOGIN_ERROR | LOGIN_SUCCESS;
+export type AppUserAction = UserAction;
+
+// export type UserDispatch = ThunkDispatch<UserState,void, UserAction >;
+export type UserDispatch = ThunkDispatch<AppState, void, AppUserAction>;

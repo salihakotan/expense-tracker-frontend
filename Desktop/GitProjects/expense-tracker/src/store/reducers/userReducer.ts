@@ -2,14 +2,13 @@ import { AnyAction } from "redux";
 import { User, UserAction, UserState } from "../../types/user";
 
 
-const defaultState:UserState = {
-    data: {} as User,
-    loading:false,
-    error:""
-}
-
+const defaultState: UserState = {
+  data: { username: "", full_name: "", email: "", message: "", token: "" } as User,
+  loading: false,
+  error: "",
+};
 const userReducer = (state:UserState=defaultState
-    ,action:UserAction | AnyAction):UserState=> {
+    ,action:UserAction):UserState=> {
         switch (action.type) {
             case "LOGIN_START":
               return { ...state, loading: true, error: "" };

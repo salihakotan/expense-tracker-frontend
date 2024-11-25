@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import "antd/dist/antd";
 import { applyMiddleware, createStore } from 'redux';
-import rootReducer from './store';
 import { thunk } from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import store from './store/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 
-const store = createStore(rootReducer,applyMiddleware(thunk));
 
 root.render(
   <Provider store={store}>
