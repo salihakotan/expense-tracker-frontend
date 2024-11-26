@@ -1,7 +1,6 @@
 import React from 'react'
-import { Category, CategoryTypeDispatch } from '../../types/category';
+import { Category, CategoryForm, CategoryTypeDispatch } from '../../types/category';
 import api from '../../utils/api';
-import { CategoryForm } from '../../components/Categories';
 
 
 export const getCategories = () => async (dispatch : CategoryTypeDispatch) => {

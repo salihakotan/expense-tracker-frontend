@@ -8,6 +8,11 @@ export interface Category{
     color:string
 }
 
+export interface CategoryForm {
+    name: string,
+    type: "income" | "expense",
+    color?: string
+}
 
 export interface CategoryState {
     data:Category[];

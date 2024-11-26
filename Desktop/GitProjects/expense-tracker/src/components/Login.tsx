@@ -25,7 +25,7 @@ function Login() {
 
     const dispatch: AppDispatch = useDispatch();
 
-    const { data, loading, error } = useSelector((state: AppState) => state.user)
+    const { data, loading, error,loginError } = useSelector((state: AppState) => state.user)
     const location = useLocation();
 
     type FieldType = {
@@ -44,6 +44,8 @@ function Login() {
     useEffect(() => {
         error && showError(error)
     }, [error])
+
+  
 
     // useEffect(() => {
     //     // Show success message only once after successful login

@@ -6,16 +6,21 @@ const defaultState: UserState = {
   data: { username: "", full_name: "", email: "", message: "", token: "" } as User,
   loading: false,
   error: "",
+  loginError:""
 };
 const userReducer = (state:UserState=defaultState
     ,action:UserAction):UserState=> {
         switch (action.type) {
             case "LOGIN_START":
-              return { ...state, loading: true, error: "" };
+              case "IS_LOGGED_IN_START":
+              return { ...state, loading: true, error: "",loginError:"" };
             case "LOGIN_SUCCESS":
-              return { ...state, loading: false, data: action.payload };
+              case "IS_LOGGED_IN_SUCCESS":
+              return { ...state, loading: false, data: action.payload , error:"", loginError:""};
             case "LOGIN_ERROR":
-              return { ...state, loading: false, error: "Login failed" };
+              return { ...state, loading: false,loginError:"", error: "Login failed" };
+              case "IS_LOGGED_IN_ERROR":
+                return { ...state, loading: false,error:"", loginError: "Token is missing or invalid" };
             default:
               return state;
           }

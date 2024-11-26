@@ -4,15 +4,12 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
-import Main from "./components/Main";
 import Categories from "./components/Categories";
+import Records from "./components/Records";
+import AppHeader from "./components/AppHeader";
 
 const { Header, Content, Footer } = Layout;
 
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
-}));
 
 function App() {
 
@@ -27,25 +24,7 @@ function App() {
     <>
 
       <Layout>
-        <Header
-          style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 1,
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <div className="demo-logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            items={items}
-            style={{ flex: 1, minWidth: 0 }}
-          />
-        </Header>
+      <AppHeader/>
         <Content style={{ padding: '20px 48px' }}>
 
           <div
@@ -60,13 +39,13 @@ function App() {
           
               <Route path="/register" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<PrivateRoute isAuthenticated={isAuthenticated} component={Home} path="/" />} />
-              <Route path="/categories" element={<PrivateRoute isAuthenticated={isAuthenticated} component={Categories} path="/" />}/>
+              <Route path="/logout" element={<Login />} />
 
-             <Route path="/" element={<Main />} />
+              <Route path="/categories" element={<Categories />}/>
+              <Route path="/records" element={<Records />} />
+
+             <Route path="/" element={<Home />} />
              
-
-
              
             </Routes>
           </div>

@@ -3,21 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { Button, Input, Modal, Space, Table, Tag, Form, Select, ColorPicker } from 'antd';
 
 import type { TableProps } from 'antd';
-import { Category, CategoryTypeDispatch } from '../types/category';
+import { Category, CategoryForm, CategoryTypeDispatch } from '../types/category';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, deleteCategory, getCategories, updateCategory } from '../store/actions/categoryActions';
 import { AppDispatch } from '../store/store';
 import { AppState } from '../store';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Mode } from '../types/general';
+import { useNavigate } from 'react-router-dom';
 
 
 
-type Mode = "new" | "edit" | "delete";
-export interface CategoryForm {
-    name: string,
-    type: "income" | "expense",
-    color?: string
-}
+
 
 const emptyForm: CategoryForm = {
     name: "",
@@ -27,6 +24,7 @@ const emptyForm: CategoryForm = {
 }
 
 function Categories() {
+    const token = localStorage.getItem('token');
 
 
     const dispatch: AppDispatch = useDispatch();
@@ -44,6 +42,8 @@ function Categories() {
     useEffect(() => {
         dispatch(getCategories());
     }, [])
+
+   
 
 
 
@@ -90,9 +90,6 @@ function Categories() {
                 return <Tag color={category.color}>{category.type}</Tag>
             }
         },
-
-
-
         {
             title: 'Action',
             key: 'action',

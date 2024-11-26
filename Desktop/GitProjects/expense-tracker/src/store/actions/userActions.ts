@@ -13,3 +13,15 @@ export const login =  (creds:LoginForm) => async (dispatch:UserDispatch)=> {
     dispatch({type:"LOGIN_ERROR"});
    }
 }
+
+export const isLoggedIn =  (token:string | null) => async (dispatch:UserDispatch)=> {
+   
+
+   dispatch({type:"IS_LOGGED_IN_START"});
+   try {
+    const response = await api.post<User>("/users/is_logged_in",{token});
+    dispatch({type:"IS_LOGGED_IN_SUCCESS",payload:response.data})
+   } catch (error) {
+    dispatch({type:"IS_LOGGED_IN_ERROR"});
+   }
+}

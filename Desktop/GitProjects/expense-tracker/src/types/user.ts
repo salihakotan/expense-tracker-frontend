@@ -18,7 +18,8 @@ export interface LoginForm {
 export interface UserState {
     data:User;
     loading:boolean;
-    error:string
+    error:string,
+    loginError:string
 }
 
  interface LOGIN_START{
@@ -33,7 +34,20 @@ export interface UserState {
     type:"LOGIN_ERROR"
 }
 
-export type UserAction =  LOGIN_START | LOGIN_ERROR | LOGIN_SUCCESS;
+interface IS_LOGGED_IN_START{
+    type:"IS_LOGGED_IN_START"
+}
+ interface IS_LOGGED_IN_SUCCESS{
+    type:"IS_LOGGED_IN_SUCCESS",
+    payload:User
+}
+
+ interface IS_LOGGED_IN_ERROR{
+    type:"IS_LOGGED_IN_ERROR"
+}
+
+
+export type UserAction =  LOGIN_START | LOGIN_ERROR | LOGIN_SUCCESS | IS_LOGGED_IN_START | IS_LOGGED_IN_ERROR | IS_LOGGED_IN_SUCCESS;
 export type AppUserAction = UserAction;
 
 // export type UserDispatch = ThunkDispatch<UserState,void, UserAction >;
