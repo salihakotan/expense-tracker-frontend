@@ -23,6 +23,21 @@ const categoryReducer = (state:CategoryState= defaultState,action:CategoryTypeAc
                     return {...state,loading:false,error:"",data:[action.payload,...state.data]};
             case "ADD_CATEGORIES_ERROR":
                 return {...state,loading:false,error:"Error adding categories!"};
+
+                case "UPDATE_CATEGORIES_START":
+                    return {...state,loading:true,error:""};
+                    case "UPDATE_CATEGORIES_SUCCESS":
+                        return {...state,loading:false,error:"",data:state.data.map(category => category.id === action.payload.id ? action.payload : category)};
+                case "UPDATE_CATEGORIES_ERROR":
+                    return {...state,loading:false,error:"Error updating category!"};
+          
+                    case "DELETE_CATEGORIES_START":
+                        return {...state,loading:true,error:""};
+                        case "DELETE_CATEGORIES_SUCCESS":
+                            return {...state,loading:false,error:"",data:state.data.filter(category => category.id !== action.payload)};
+                    case "DELETE_CATEGORIES_ERROR":
+                        return {...state,loading:false,error:"Error deleting category!"};
+              
       
             default:
                 return state;

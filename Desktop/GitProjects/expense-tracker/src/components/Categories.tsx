@@ -5,13 +5,14 @@ import { Button, Input, Modal, Space, Table, Tag, Form, Select, ColorPicker } fr
 import type { TableProps } from 'antd';
 import { Category, CategoryTypeDispatch } from '../types/category';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, getCategories } from '../store/actions/categoryActions';
+import { addCategory, deleteCategory, getCategories, updateCategory } from '../store/actions/categoryActions';
 import { AppDispatch } from '../store/store';
 import { AppState } from '../store';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 
 
-type Mode = "new" | "edit";
+type Mode = "new" | "edit" | "delete";
 export interface CategoryForm {
     name: string,
     type: "income" | "expense",
@@ -37,6 +38,8 @@ function Categories() {
     const [form, setForm] = useState<CategoryForm>(emptyForm);
 
     const [mode, setMode] = useState<Mode>("new");
+    const [updateId, setUpdateId] = useState<number | null>(null);
+    const [deleteId, setDeleteId] = useState<number | null>(null);
 
     useEffect(() => {
         dispatch(getCategories());
@@ -50,16 +53,23 @@ function Categories() {
     };
 
     const handleOk = () => {
-        dispatch(addCategory(form))
+        if (mode === "new") dispatch(addCategory(form))
+        else if (mode === "edit") dispatch(updateCategory(form, updateId as number));
+        else if (mode === "delete") dispatch(deleteCategory(deleteId as number));
+
         setIsModalOpen(false);
         setMode("new")
         setForm(emptyForm)
+        setUpdateId(null)
+        setDeleteId(null)
     };
 
     const handleCancel = () => {
         setIsModalOpen(false);
         setMode("new")
         setForm(emptyForm)
+        setUpdateId(null)
+        setDeleteId(null)
     };
 
     console.log("data: " + data);
@@ -83,54 +93,71 @@ function Categories() {
 
 
 
-        // {
-        //   title: 'Action',
-        //   key: 'action',
-        //   render: (_, record) => (
-        //     <Space size="middle">
-        //       <a>Invite {record.name}</a>
-        //       <a>Delete</a>
-        //     </Space>
-        //   ),
-        // },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (text: string, category: Category) => (
+                <Space size="middle">
+                    <EditOutlined style={{ color: "blue" }} onClick={() => {
+                        showModal("edit")
+                        setForm(category)
+                        setUpdateId(category.id)
+                    }} />
+                    <DeleteOutlined onClick={() => {
+                        showModal("delete")
+                        setDeleteId(category.id)
+                    }} style={{ color: "red" }} />
+                </Space>
+            ),
+        },
     ];
 
 
 
     return (
         <>
-            <Button style={{ float: "right" }} type="primary" onClick={() => showModal("new")}>
+            <Button style={{ float: "right", marginBottom:"20px" }} type="primary" onClick={() => showModal("new")}> 
                 New Category
             </Button>
-            <Modal title={mode === "new" ? "Create new category" : "Update category"} 
-            open={isModalOpen} onOk={handleOk} 
-            onCancel={handleCancel}
-            okButtonProps={{disabled: !form.name}}
+            <Modal title={mode === "new" ? "Create new category" : mode ==="edit" ? "Update category" : "Delete category"}
+                open={isModalOpen} onOk={handleOk}
+                onCancel={handleCancel}
+                okButtonProps={{ disabled: (mode !=="delete" && !form.name )}}
             >
 
-                <Form
-                labelCol={{span:8}}
-                wrapperCol={{span:16}}
-                >
+                {
+                    mode === "edit" || mode === "new" ?
+                        <Form
+                            labelCol={{ span: 8 }}
+                            wrapperCol={{ span: 16 }}
+                        >
 
-              
 
-                <Form.Item label="Category name" required>
-                    <Input name='name' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                </Form.Item>
-                <Form.Item label="Category type">
-                    <Select defaultValue="expense" onChange={(value) => setForm({ ...form, type: value as "income" | "expense" })}>
-                        <Select.Option value="income">Income</Select.Option>
-                        <Select.Option value="expense">Expense</Select.Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item label="Color">
-                    <ColorPicker value={form.color} onChange={(value) => setForm({ ...form, color: value.toHexString() })} />
-                </Form.Item>
-                </Form>
+
+                            <Form.Item label="Category name" required>
+                                <Input name='name' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                            </Form.Item>
+                            <Form.Item label="Category type">
+                                <Select value={form.type} defaultValue={form.type} onChange={(value) => setForm({ ...form, type: value as "income" | "expense" })}>
+                                    <Select.Option value="income">Income</Select.Option>
+                                    <Select.Option value="expense">Expense</Select.Option>
+                                </Select>
+                            </Form.Item>
+                            <Form.Item label="Color">
+                                <ColorPicker value={form.color} onChange={(value) => setForm({ ...form, color: value.toHexString() })} />
+                            </Form.Item>
+                        </Form>
+                        : mode === "delete" ?
+
+                        <div>
+                            Are you sure?
+                        </div> 
+                        : null
+                }
+
             </Modal>
 
-            <Table columns={columns} dataSource={data} />
+            <Table loading={loading} columns={columns} dataSource={data} />
 
 
         </>
