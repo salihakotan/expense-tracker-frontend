@@ -3,7 +3,7 @@ import { User, UserAction, UserState } from "../../types/user";
 
 
 const defaultState: UserState = {
-  data: { username: "", full_name: "", email: "", message: "", token: "" } as User,
+  data: {} as User,
   loading: false,
   error: "",
   loginError:""
@@ -21,7 +21,9 @@ const userReducer = (state:UserState=defaultState
               return { ...state, loading: false,loginError:"", error: "Login failed" };
               case "IS_LOGGED_IN_ERROR":
                 return { ...state, loading: false,error:"", loginError: "Token is missing or invalid" };
-            default:
+              case "LOGOUT":
+                return {...state,data:{} as User,}
+                default:
               return state;
           }
     

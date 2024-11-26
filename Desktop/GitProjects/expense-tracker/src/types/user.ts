@@ -46,8 +46,12 @@ interface IS_LOGGED_IN_START{
     type:"IS_LOGGED_IN_ERROR"
 }
 
+interface LOGOUT{
+    type:"LOGOUT";
+}
 
-export type UserAction =  LOGIN_START | LOGIN_ERROR | LOGIN_SUCCESS | IS_LOGGED_IN_START | IS_LOGGED_IN_ERROR | IS_LOGGED_IN_SUCCESS;
+
+export type UserAction =  LOGIN_START | LOGIN_ERROR | LOGIN_SUCCESS | IS_LOGGED_IN_START | IS_LOGGED_IN_ERROR | IS_LOGGED_IN_SUCCESS | LOGOUT;
 export type AppUserAction = UserAction;
 
 // export type UserDispatch = ThunkDispatch<UserState,void, UserAction >;

@@ -26,7 +26,7 @@ function AppHeader() {
     console.log(pathname)
 
     useEffect(() => {
-        if (pathname !== "/" && (!token || loginError)) {
+        if (pathname !== "/" && pathname !== "/register" && (!token || loginError)) {
             navigate('/login'); // Token yoksa login sayfasına yönlendir
         }
     }, [token, navigate]);
@@ -64,9 +64,11 @@ function AppHeader() {
                     data.username && token ? <>
                         <Menu.Item key="/categories" ><Link to="/categories">Categories</Link></Menu.Item>
                         <Menu.Item key="/records"><Link to="/records">Records</Link></Menu.Item>
-                        <Menu.Item key="/logout" onClick={()=>localStorage.removeItem("token")}><Link to="/logout">Logout</Link></Menu.Item></> : loading ? null :
+                        <Menu.Item key="/logout"><Link to="/logout">Logout</Link></Menu.Item></> : loading ? null :
 
+                       <>
                         <Menu.Item key="/login"><Link to="/login">Login</Link></Menu.Item>
+                        <Menu.Item key="/register"><Link to="/register">Register</Link></Menu.Item></>
                 }
 
 
