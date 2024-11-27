@@ -71,6 +71,9 @@ function AppHeader() {
                     data.username && token ? <>
                         <Menu.Item key="/categories" ><Link to="/categories">Categories</Link></Menu.Item>
                         <Menu.Item key="/records"><Link to="/records">Records</Link></Menu.Item>
+                        <Menu.Item key="/budgetData"><Link to="/budgetData">Budget Data</Link></Menu.Item>
+                        <Menu.Item key="/pieChartTest"><Link to="/pieChartTest">Pie Chart Test</Link></Menu.Item>
+
                         <Menu.Item key="/logout"><Link to="/logout">Logout</Link></Menu.Item></> : loading ? null :
 
                        <>

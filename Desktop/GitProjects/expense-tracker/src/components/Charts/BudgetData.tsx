@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../store'
 
-function PieChartTest() {
+function BudgetData() {
 
 
         const {data:categoryData} = useSelector((state:AppState) => state.categories);
@@ -61,4 +61,4 @@ function PieChartTest() {
   )
 }
 
-export default PieChartTest
+export default BudgetData

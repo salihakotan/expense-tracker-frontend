@@ -8,6 +8,8 @@ import Categories from "./components/Categories";
 import Records from "./components/Records";
 import AppHeader from "./components/AppHeader";
 import Logout from "./components/Logout";
+import BudgetData from "./components/Charts/BudgetData";
+import PieChartTest from "./components/Charts/PieChartTest";
 
 const { Header, Content, Footer } = Layout;
 
@@ -44,6 +46,10 @@ function App() {
 
               <Route path="/categories" element={<Categories />}/>
               <Route path="/records" element={<Records />} />
+
+              {/* CHARTS */}
+              <Route path="/budgetData" element={<BudgetData />} />
+              <Route path="/pieChartTest" element={<PieChartTest />} />
 
              <Route path="/" element={<Home />} />
              
