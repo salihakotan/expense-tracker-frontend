@@ -113,6 +113,7 @@ function Categories() {
 
     return (
         <>
+        <h1 className='pageTitle'>Categories</h1>
             <Button style={{ float: "right", marginBottom:"20px" }} type="primary" onClick={() => showModal("new")}> 
                 New Category
             </Button>

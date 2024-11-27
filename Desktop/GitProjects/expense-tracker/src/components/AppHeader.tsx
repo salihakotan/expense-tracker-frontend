@@ -12,7 +12,7 @@ function AppHeader() {
 
 
     const dispatch: AppDispatch = useDispatch();
-    const { data, loading, error,loginError } = useSelector((state: AppState) => state.user)
+    const { data, loading, error, loginError } = useSelector((state: AppState) => state.user)
 
     const token = localStorage.getItem('token');
 
@@ -32,15 +32,15 @@ function AppHeader() {
         }
     }, [token, navigate]);
 
-  
+
 
 
     useEffect(() => {
-        if(loginError && pathname !== "/login" && pathname !== "/"){
+        if (loginError && pathname !== "/login" && pathname !== "/") {
             showError(loginError)
             navigate('/login');
-        } 
-        
+        }
+
     }, [loginError])
 
 
@@ -63,7 +63,7 @@ function AppHeader() {
                 mode="horizontal"
                 selectedKeys={[pathname]}
                 style={{ flex: 1, minWidth: 0 }}>
-                    
+
                 <Menu.Item key="/"><Link to="/">Home</Link></Menu.Item>
 
 
@@ -74,12 +74,18 @@ function AppHeader() {
                         <Menu.Item key="/budgetData"><Link to="/budgetData">Budget Data</Link></Menu.Item>
                         <Menu.Item key="/pieChartTest"><Link to="/pieChartTest">Pie Chart Test</Link></Menu.Item>
 
-                        <Menu.Item key="/logout"><Link to="/logout">Logout</Link></Menu.Item></> : loading ? null :
+                        <Menu.Item style={{ float: 'right', marginRight: 0, marginLeft: "auto" }} key="/logout"><Link to="/logout">Logout</Link></Menu.Item></> : loading ? null :
 
-                       <>
-                        <Menu.Item key="/login"><Link to="/login">Login</Link></Menu.Item>
-                        <Menu.Item key="/register"><Link to="/register">Register</Link></Menu.Item></>
+                        <>
+                            <div style={{ float: 'right', marginRight: 0, marginLeft: "auto" }} >
+                                <Menu.Item key="/login"><Link to="/login">Login</Link></Menu.Item>
+                                <Menu.Item key="/register"><Link to="/register">Register</Link></Menu.Item>
+                            </div></>
+
                 }
+
+
+
 
 
 

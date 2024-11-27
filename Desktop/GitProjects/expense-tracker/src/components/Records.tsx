@@ -139,6 +139,7 @@ function Records() {
 
     return (
         <>
+         <h1 className='pageTitle'>Records</h1>
             <Button style={{ float: "right", marginBottom: "20px" }} type="primary" onClick={() =>
                 showModal("new")
             }>

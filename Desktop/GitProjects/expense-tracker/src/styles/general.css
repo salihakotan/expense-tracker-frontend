@@ -1,0 +1,161 @@
+/* c */
+
+@font-face {
+    font-family: "Barbie";   /*Can be any text*/
+    src: local("barbie"),
+      url("../fonts/barbie.ttf") format("truetype");
+  }
+
+
+ /* Grid düzeni */
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Her bir grafik min 300px, genişliğe göre esneklik */
+    gap: 20px; /* Grafikler arasında boşluk */
+    padding: 20px;
+  }
+  
+  /* Grafik kutusu */
+  .chart-item {
+    background-color: #f9f9f9; /* Arka plan rengi */
+    border: 1px solid #ddd; /* Çerçeve */
+    border-radius: 8px; /* Köşeleri yuvarla */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    padding: 10px;
+  }
+
+
+.home-page-title{
+    font-size:5rem;
+    font-family: "Barbie";
+    text-align: center;
+    color: #ff00b3;
+    /* font-family: ; */
+}
+
+::selection {
+    background-color: #ff5fb4;  /* Seçili metnin arka plan rengi */
+    color: white;               /* Seçili metnin yazı rengi */
+}
+
+
+.ant-layout-content{
+    background-image: url('../img/wallpaper2.jpg')!important;
+}
+footer.ant-layout-footer{
+    background-color: #151515;
+    color: rgb(255, 0, 170);
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px 1.4px #a90049;
+}
+
+
+
+
+/* GOOGLE CHARTS STYLE OVERRIDES  */
+
+.google-visualization-table-table{
+    width: 100%!important;
+}
+
+.google-visualization-controls-slider-horizontal {
+    border: 1px solid #b8008f!important;
+    background-color: #ffc1e7!important;
+}
+
+.google-visualization-controls-slider-handle {
+    background-color: rgb(139, 28, 100)!important;
+    opacity: 0.5!important;
+}
+
+.google-visualization-controls-rangefilter-thumblabel {
+    color: #b4117e!important;
+
+}
+
+.google-visualization-controls-slider-thumb{
+    background-color: #ff49ab!important;
+}
+
+.google-visualization-table{
+    width: 90%!important;
+}
+
+.custom-table-header {
+    height: 40px;
+    font-size: 20px;
+    text-align: left;
+    background-color: #ff1caf; /* Başlık arka plan rengi */
+    color: white; /* Başlık yazı rengi */
+    font-weight: bold;
+  }
+  
+  .custom-table-row {
+    height: 30px;
+    background-color: #f9f9f9; /* Satır arka plan rengi */
+  }
+  
+  .custom-odd-row {
+    height: 30px;
+    background-color: #f1f1f1; /* Tek satır rengi */
+  }
+  
+  .custom-selected-row {
+    height: 30px;
+    background-color: #dd84ff; /* Seçilen satır rengi */
+  }
+  
+  .custom-hover-row:hover {
+    background-color: #fab9ff; /* Üzerine gelindiğinde arka plan rengi */
+  }
+
+
+
+/* ANT DESIGN OVERRIDES -------------- */
+
+:where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark>.ant-menu {
+    background: #aa367e00!important;
+}
+
+:where(.css-dev-only-do-not-override-1x0dypw).ant-layout-header {
+    background: #ffb8d3!important;
+}
+
+:where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark.ant-menu-horizontal >.ant-menu-item-selected, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark>.ant-menu.ant-menu-horizontal >.ant-menu-item-selected, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark.ant-menu-horizontal >.ant-menu-submenu-selected, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark>.ant-menu.ant-menu-horizontal >.ant-menu-submenu-selected {
+    background-color: #3b3b3b!important;
+    border-radius: 30px;
+
+}
+
+.ant-menu-overflow-item.ant-menu-item.ant-menu-item-only-child:hover{
+    background-color: #ff0080!important;
+
+}
+
+:where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark .ant-menu-item a, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark>.ant-menu .ant-menu-item a, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark .ant-menu-item a:hover, :where(.css-dev-only-do-not-override-1x0dypw).ant-menu-dark>.ant-menu .ant-menu-item a:hover {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-shadow: 1.3px 1.3px 1px #c10053;
+
+}
+
+
+
+.ant-menu-item{
+    border-radius: 20px!important;
+    background: #1515151f;
+    height: 55px;
+}
+.ant-menu-item span{
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+:where(.css-dev-only-do-not-override-1x0dypw).ant-layout-header .ant-menu{
+    column-gap: 5px;
+    display: flex;
+    align-items: center;
+
+}

@@ -11,6 +11,7 @@ import Logout from "./components/Logout";
 import BudgetData from "./components/Charts/BudgetData";
 import PieChartTest from "./components/Charts/PieChartTest";
 
+
 const { Header, Content, Footer } = Layout;
 
 
@@ -25,7 +26,6 @@ function App() {
 
   return (
     <>
-
       <Layout>
       <AppHeader/>
         <Content style={{ padding: '20px 48px' }}>
@@ -34,7 +34,7 @@ function App() {
             style={{
               padding: 24,
               minHeight: 380,
-              background: colorBgContainer,
+              background: "rgb(255 255 255 / 78%)",
               borderRadius: borderRadiusLG,
             }}
           >
@@ -58,7 +58,7 @@ function App() {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Budget Tracker ©{new Date().getFullYear()} Created by S
+          Budget Tracker 24 ©{new Date().getFullYear()} Created by S.K.
         </Footer>
       </Layout>
 

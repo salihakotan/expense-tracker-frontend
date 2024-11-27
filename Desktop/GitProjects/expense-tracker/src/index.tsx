@@ -7,6 +7,7 @@ import { thunk } from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './store/store';
+import "./styles/general.css"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

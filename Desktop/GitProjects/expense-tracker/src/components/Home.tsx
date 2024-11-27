@@ -2,7 +2,9 @@ import React from 'react'
 
 function Home() {
   return (
-    <h1>Home</h1>
+    <div style={{backgroundColor:"#fff"}}>
+    <h1 className='home-page-title'>Budget Tracker 24</h1>
+    </div>
   )
 }
 
