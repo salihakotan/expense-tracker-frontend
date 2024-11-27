@@ -36,9 +36,8 @@ function Login() {
 
     const onFinish = async(values: LoginForm) => {
       await  dispatch(login(values));
-      showSuccess("You have successfully logged in!");
-      navigate("/")
-
+      console.log("finished: loadings 1,2"  + loading, loginError, error, token, data.username)
+  
     }
 
     useEffect(() => {
@@ -47,21 +46,16 @@ function Login() {
 
   
 
-    // useEffect(() => {
-    //     // Show success message only once after successful login
-    //     if (data.username && !isLoginSuccess) {
-    //         showSuccess("You have successfully logged in!");
-    //         setLoginSuccess(true); // Prevent further triggers
-    //     }
-    // }, [data.username, isLoginSuccess]);
-
-      useEffect(() => {
+    useEffect(() => {
         
-        if (token && !isLoginSuccess) {
-            setLoginSuccess(true);
+        if (token && data.username) {
+            if(isLoginSuccess) {
+                showSuccess("You have successfully logged in!");
+                setLoginSuccess(false);
+            }
           navigate("/"); // Ensure no infinite redirects
         }
-    }, [token, navigate]);
+    }, [token,data.username,isLoginSuccess]);
 
     // const onFinish: FormProps<FieldType>['onFinish'] = async(values) => {
     //     try {

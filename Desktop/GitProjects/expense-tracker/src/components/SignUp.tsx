@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
 import { showError, showSuccess } from '../utils/showMessage';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store';
 
 
 
@@ -37,22 +39,24 @@ function SignUp() {
   const onFinish = async (values: any) => {
     try {
       await api().post("/users/register", values);
-      showSuccess("Registered successfully")
+       showSuccess("Registered successfully")
       navigate("/login", {state:{newSignUp:true}});
+      setLoginSuccess(true)
     } catch (error) {
       console.log(error);
       showError((error as any).response.data.error);
     }
   };
 
+  const {data} = useSelector((state:AppState) => state.user);
+  console.log("reg data" + data.username);
   
   useEffect(() => {
         
-    if (token && !isLoginSuccess) {
-        setLoginSuccess(true);
+    if (token && data.username) {
       navigate("/"); // Ensure no infinite redirects
     }
-}, [token, navigate]);
+}, [token,data.username]);
 
   return (
     <Form

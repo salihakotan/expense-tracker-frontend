@@ -24,16 +24,23 @@ function AppHeader() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     console.log(pathname)
+    console.log(loginError)
 
     useEffect(() => {
-        if (pathname !== "/" && pathname !== "/register" && (!token || loginError)) {
+        if (pathname !== "/" && pathname !== "/register" && pathname !== "/login" && (!token || loginError)) {
             navigate('/login'); // Token yoksa login sayfasına yönlendir
         }
     }, [token, navigate]);
 
+  
+
 
     useEffect(() => {
-        loginError && pathname !== "/login" && pathname !== "/" && showError(loginError)
+        if(loginError && pathname !== "/login" && pathname !== "/"){
+            showError(loginError)
+            navigate('/login');
+        } 
+        
     }, [loginError])
 
 

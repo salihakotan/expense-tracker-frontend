@@ -12,6 +12,7 @@ export const login =  (creds:LoginForm) => async (dispatch:UserDispatch)=> {
     localStorage.setItem("token",response.data.token);
    } catch (error) {
     dispatch({type:"LOGIN_ERROR"});
+    localStorage.removeItem("token");
    }
 }
 
@@ -24,6 +25,7 @@ export const isLoggedIn =  (token:string | null) => async (dispatch:UserDispatch
     dispatch({type:"IS_LOGGED_IN_SUCCESS",payload:response.data})
    } catch (error) {
     dispatch({type:"IS_LOGGED_IN_ERROR"});
+    localStorage.removeItem("token");
    }
 }
 
