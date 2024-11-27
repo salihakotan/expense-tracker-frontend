@@ -58,7 +58,7 @@ function App() {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Budget Tracker 24 ©{new Date().getFullYear()} Created by S.K.
+          Budget Tracker 24 ©{new Date().getFullYear()} Created by SALIHA KOTAN
         </Footer>
       </Layout>
 

@@ -37,49 +37,104 @@ function BudgetData() {
 
 <h1 className='pageTitle'>Budget Data</h1>
 
-<div style={{padding:30,margin:10,backgroundColor:"#e4e4e4" ,fontSize:18}}>
-    {
-        recordsData.map((record)=> {
-            {totalBudget += record.amount}
-            {record.category.type ==="expense" ? expenseBudget += record.amount : incomeBudget += record.amount}
-          return  <div>
-            
-            {record.title}------
-           
-            <span style={{fontWeight:'bold', fontSize:20, color:'darkBlue'}}>
-                -----------
-                {
-                    Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD"
-                    }).format(record.amount)
-                }
-                -----------
-            </span>
-            
-            <span>------{record.category.type}</span>
-           </div>
-        })
-        
-        
-    }
-    </div>
-    
-    <div style={{padding:30, margin:10, backgroundColor:"#ffd7f1" ,fontSize:18}}>
-    <span>   Total budget:</span>  <span  style={{ fontWeight:'bold', color:"darkBlue", fontSize:18}}>&nbsp; { Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD"
-                    }).format(totalBudget)} </span> <br/>
-      <span> Income budget:</span> <span  style={{fontWeight:'bold', color:"green", fontSize:18}}>&nbsp;  { Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD"
-                    }).format(incomeBudget)}</span> <br/>
-       <span> Expense budget:</span> <span  style={{fontWeight:'bold', color:"red", fontSize:18}}>&nbsp; { Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD"
-                    }).format(expenseBudget)}</span> <br/>
-    </div>
-    </>
+<table
+        style={{
+            backgroundColor:"white",
+          width: "80%",
+          margin: "20px auto",
+          borderCollapse: "collapse",
+          fontSize: "16px",
+          textAlign: "left",
+        }}
+      >
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid #ccc", padding: "10px" }}>Title</th>
+            <th style={{ border: "1px solid #ccc", padding: "10px" }}>Amount</th>
+            <th style={{ border: "1px solid #ccc", padding: "10px" }}>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {recordsData.map((record) => {
+            totalBudget += record.amount;
+            record.category.type === "expense"
+              ? (expenseBudget += record.amount)
+              : (incomeBudget += record.amount);
+
+            return (
+              <tr key={record.id}>
+                <td style={{ border: "1px solid #ccc", padding: "10px" }}>
+                  {record.title}
+                </td>
+                <td
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: "10px",
+                    fontWeight: "bold",
+                    color: "gray",
+                  }}
+                >
+                  {Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(record.amount)}
+                </td>
+                <td
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: "10px",
+                    color: record.category.type === "expense" ? "red" : "green",
+                  }}
+                >
+                  {record.category.type}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <div
+        style={{
+            backgroundColor:"white",
+          padding: "20px",
+          margin: "10px auto",
+          fontSize: "16px",
+          width: "80%",
+          textAlign: "center",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+        }}
+      >
+        <p>
+          <strong>Total Budget: </strong>
+          <span style={{ color: "darkBlue" }}>
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(totalBudget)}
+          </span>
+        </p>
+        <p>
+          <strong>Income Budget: </strong>
+          <span style={{ color: "green" }}>
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(incomeBudget)}
+          </span>
+        </p>
+        <p>
+          <strong>Expense Budget: </strong>
+          <span style={{ color: "red" }}>
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(expenseBudget)}
+          </span>
+        </p>
+      </div>
+      </>
   )
 }
 

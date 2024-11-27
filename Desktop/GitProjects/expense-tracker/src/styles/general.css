@@ -7,7 +7,28 @@
   }
 
 
- /* Grid düzeni */
+  .homePageGirl{
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    max-height: 400px;
+    margin: auto;
+    object-fit: contain;
+  }
+  
+  .logo{
+    height: auto;
+    width: 100%;
+  }
+
+  .logo-area{
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+
 .chart-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Her bir grafik min 300px, genişliğe göre esneklik */
@@ -15,7 +36,6 @@
     padding: 20px;
   }
   
-  /* Grafik kutusu */
   .chart-item {
     background-color: #f9f9f9; /* Arka plan rengi */
     border: 1px solid #ddd; /* Çerçeve */
@@ -26,7 +46,7 @@
 
 
 .home-page-title{
-    font-size:5rem;
+    font-size:6rem;
     font-family: "Barbie";
     text-align: center;
     color: #ff00b3;
@@ -144,7 +164,7 @@ footer.ant-layout-footer{
 
 .ant-menu-item{
     border-radius: 20px!important;
-    background: #1515151f;
+    background: #00000000;
     height: 55px;
 }
 .ant-menu-item span{
@@ -157,5 +177,9 @@ footer.ant-layout-footer{
     column-gap: 5px;
     display: flex;
     align-items: center;
+    margin-left: 30px;
+}
 
+:where(.css-dev-only-do-not-override-1x0dypw).ant-btn-variant-solid {
+    background-color: #ff00b5;
 }
